@@ -1,0 +1,26 @@
+package main
+type t1 struct {
+    f1 string
+}
+func (t *t1) t1method() {
+}
+// embedding type
+type t2 struct {
+    t1
+}
+// redefining type
+type t3 t1
+func main() {
+    var mt1 t1
+    var mt2 t2
+    var mt3 t3
+    // fields are inherited in all the cases
+    _ = mt1.f1
+    _ = mt2.f1
+    _ = mt3.f1
+    // these work ok
+    mt1.t1method()
+    mt2.t1method()
+    // mt3.t1method undefined (type t3 has no field or method t1method)
+    mt3.t1method()
+}

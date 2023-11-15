@@ -1,0 +1,15 @@
+package main
+import (
+    "fmt"
+)
+func main() {
+    myswitch:
+    switch {
+        case true:
+        for {
+            fmt.Println("switch")
+            break myswitch // wouldn't be able to “continue” in this case
+        }
+    }
+    fmt.Println("the end")
+}

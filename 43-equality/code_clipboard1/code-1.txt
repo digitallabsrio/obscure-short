@@ -1,0 +1,14 @@
+package main
+import "fmt"
+type compareStruct2 struct {
+    A int
+    B string
+    C []int // changed type of C from array to slice
+}
+func main() {
+    s1 := compareStruct2{}
+    s2 := compareStruct2{}
+    // invalid operation: s1 == s2
+    // (struct containing []int can't be compared)
+    fmt.Println(s1 == s2)
+}

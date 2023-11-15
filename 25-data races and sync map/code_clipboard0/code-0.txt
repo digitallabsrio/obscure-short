@@ -1,0 +1,20 @@
+package main
+import (
+    "math/rand"
+    "time"
+)
+func readWrite(m map[int]int) {
+    // do some random reads and writes to the map
+    for i := 0; i < 100; i++ {
+        k := rand.Int()
+        m[k] = m[k] + 1
+    }
+}
+func main() {
+    m := make(map[int]int)
+    // start goroutines to read and write map concurrently
+    for i := 0; i < 10; i++ {
+        go readWrite(m)
+    }
+    time.Sleep(time.Second)
+}

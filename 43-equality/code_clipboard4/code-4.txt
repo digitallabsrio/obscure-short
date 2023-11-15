@@ -1,0 +1,12 @@
+package main
+import (
+    "testing"
+    "math"
+    "reflect"
+)
+
+func TestF(t *testing.T) {
+    x := math.NaN
+    reflect.DeepEqual(x, x) // false
+    reflect.DeepEqual(TestF, TestF) // false
+}

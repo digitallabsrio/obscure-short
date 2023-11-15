@@ -1,0 +1,26 @@
+package main
+import (
+    "fmt"
+    "time"
+)
+type myStruct struct {
+    v int
+}
+func (s *myStruct) myMethod() {
+    // print the value of myStruct and its address
+    fmt.Printf("%v, %p\n", s.v, s)
+}
+func main() {
+    byValue := []myStruct{{1}, {2}, {3}}
+    byReference := []*myStruct{{1}, {2}, {3}}
+    fmt.Println("By value")
+    for _, i := range byValue {
+        go i.myMethod()
+    }
+    time.Sleep(time.Millisecond * 100)
+    fmt.Println("By reference")
+    for _, i := range byReference {
+        go i.myMethod()
+    }
+    time.Sleep(time.Millisecond * 100)
+}

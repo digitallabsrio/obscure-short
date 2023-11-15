@@ -1,0 +1,18 @@
+package main
+import (
+  "fmt"
+  "time"
+)
+func goroutine1() {
+  time.Sleep(time.Second)
+  fmt.Println("goroutine1")
+}
+func goroutine2() {
+  time.Sleep(time.Second)
+  fmt.Println("goroutine2")
+}
+func main() {
+  fmt.Println("Invoking goroutines")
+  go goroutine1()
+  go goroutine2()
+}

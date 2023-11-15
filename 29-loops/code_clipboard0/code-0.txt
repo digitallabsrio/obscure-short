@@ -1,0 +1,11 @@
+package main
+import "fmt"
+func main() {
+    slice := []string{"one", "two", "three"}
+    for v := range slice {
+        fmt.Println(v) // 0, 1, 2
+    }
+    for _, v := range slice {
+        fmt.Println(v) // one two three
+        }
+}

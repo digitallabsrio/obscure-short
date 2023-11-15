@@ -1,0 +1,17 @@
+package main
+import (
+  "fmt"
+)
+func panickyFunc() {
+  panic("panic!")
+}
+func main() {
+  defer func() {
+    r := recover()
+    if r != nil {
+      fmt.Println("recovered", r)
+    }
+  }()
+  panickyFunc()
+  fmt.Println("this will never be printed")
+}

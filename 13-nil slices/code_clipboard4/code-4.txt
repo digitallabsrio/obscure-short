@@ -1,0 +1,23 @@
+package main
+import (
+    "bytes"
+    "fmt"
+    "io/ioutil"
+    "os"
+)
+func getExecutableFormat() []byte {
+    // read our own executable file into memory
+    bytes,err := ioutil.ReadFile(os.Args[0])
+    if err != nil {
+        panic(err)
+    }
+    return bytes[:4]
+}
+func main() {
+    format := getExecutableFormat()
+    if bytes.HasPrefix(format[1:], []byte("ELF")) {
+        fmt.Println("linux executable")
+    } else if bytes.HasPrefix(format[1:], []byte("MZ")) {
+        fmt.Println("windows executable")
+    }
+}

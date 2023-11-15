@@ -1,0 +1,12 @@
+package main
+import "fmt"
+type item struct {
+    value string
+}
+func main() {
+    m := map[int]item{1: {"one"}}
+    tmp := m[1]
+    tmp.value = "two"
+    m[1] = tmp
+    fmt.Println(m[1].value)
+}

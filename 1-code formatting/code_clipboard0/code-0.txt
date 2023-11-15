@@ -1,0 +1,6 @@
+package main
+// missing function body
+func main()
+// syntax error: unexpected semicolon or newline before {
+{
+}

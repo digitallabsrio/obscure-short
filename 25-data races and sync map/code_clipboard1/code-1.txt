@@ -1,0 +1,29 @@
+package main
+import (
+    "math/rand"
+    "sync"
+    "time"
+    "fmt"
+)
+var mu sync.Mutex
+func readWrite(m map[int]int) {
+    fmt.Println("new call entered")
+    mu.Lock()
+    fmt.Println("call blocked")
+    //time.Sleep(10*time.Second)
+    // defer unlock mutex will unlock mutex even if this goroutine would panic
+    defer mu.Unlock()
+    fmt.Println("call released")
+    for i := 0; i < 100; i++ {
+        k := rand.Int()
+        m[k] = m[k] + 1
+    }
+    
+}
+func main() {
+    m := make(map[int]int)
+    for i := 0; i < 10; i++ {
+        go readWrite(m)
+    }
+    time.Sleep(time.Second)
+}

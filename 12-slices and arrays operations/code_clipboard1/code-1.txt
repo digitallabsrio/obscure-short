@@ -1,0 +1,31 @@
+package main
+import "fmt"
+func main() {
+    // make a slice with length 3 and capacity 4
+    s := make([]int, 3, 4)
+    // initialize to 1,2,3
+    s[0] = 1
+    s[1] = 2
+    s[2] = 3
+    // capacity of the array is 4
+    // adding one more number fits in the initial array
+    s2 := append(s, 4)
+    // modify the elements of the array
+    // s and s2 still share the same array
+    for i := range s2 {
+        s2[i] += 10
+    }
+    fmt.Println(s, len(s), cap(s)) // [11 12 13] 3 4
+    fmt.Println(s2, len(s2), cap(s2)) // [11 12 13 14] 4 4
+    // this append grows the array past its capacity
+    // new array must be allocated for s3
+    s3 := append(s2, 5)
+    // modify the elements of the array to see the result
+    for i := range s3 {
+        s3[i] += 10
+    }
+    fmt.Println(s, len(s), cap(s)) // still the old array [11 12 13] 3 4
+    fmt.Println(s2, len(s2), cap(s2)) // the old array [11 12 13 14] 4 4
+    // array was copied on last append [21 22 23 24 15] 5 8
+    fmt.Println(s3, len(s3), cap(s3))
+}

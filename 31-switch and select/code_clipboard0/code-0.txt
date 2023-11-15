@@ -1,0 +1,44 @@
+package main
+import (
+    "fmt"
+    "time"
+)
+func main() {
+    //fmt.Println(time.Now().Weekday())
+    // this won't work, in case of Saturday nothing will be printed
+    switch time.Now().Weekday() {
+        case 6: // this case will break out of switch without doing anything
+        case 7:
+        fmt.Println("weekend")
+    }
+    switch time.Now().Weekday() {
+        case 1:
+        fmt.Println("weekday")
+        break // this break does nothing because case would break anyway
+        case 2:
+        fmt.Println("weekday")
+    }
+    // fallthrough keyword will make Saturday print weekend as well
+    switch time.Now().Weekday() {
+        case 6:
+        fallthrough
+        case 7:
+        fmt.Println("weekend")
+    }
+    // case can also have multiple values
+    switch time.Now().Weekday() {
+        case 6, 7:
+        fmt.Println("weekend")
+    }
+    // conditional breaks are still useful
+    switch time.Now().Weekday() {
+        case 6, 7:
+        day := time.Now().Format("01-02")
+        if day == "12-25" || day == "12-26" {
+            fmt.Println("Christmas weekend")
+            break // don't also print "weekend"
+        }
+        // a regular weekend
+        fmt.Println("weekend")
+    }
+}

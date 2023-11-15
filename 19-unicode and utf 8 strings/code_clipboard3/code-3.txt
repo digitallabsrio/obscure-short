@@ -1,0 +1,23 @@
+package main
+import (
+    "fmt"
+    "unicode/utf8"
+    "golang.org/x/text/unicode/norm"
+)
+func normlen(s string) int {
+    var ia norm.Iter
+    ia.InitString(norm.NFKD, s)
+    nc := 0
+    for !ia.Done() {
+        nc = nc + 1
+        ia.Next()
+    }
+    return nc
+}
+func main() {
+    str := "é́" // a particularly strange character
+    fmt.Printf("%d bytes, %d runes, %d actual character",
+    len(str),
+    utf8.RuneCountInString(str),
+    normlen(str))
+}

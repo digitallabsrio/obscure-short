@@ -1,0 +1,4 @@
+type StringHeader struct {
+    Data uintptr
+    Len int
+}

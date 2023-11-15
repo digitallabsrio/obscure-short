@@ -1,0 +1,30 @@
+package main
+import (
+    "errors"
+    "fmt"
+)
+
+func func1() error {
+    return nil
+}
+
+func errFunc1() (int, error) {
+    return 1, errors.New("important error")
+}
+
+func returnsErr() error {
+    err := func1()
+    if err != nil {
+        return err
+    }
+    v1, err := errFunc1()
+    if err != nil {
+        fmt.Println(v1, err) // prints: 1 important error
+        return err
+    }
+    return nil
+}
+
+func main() {
+    fmt.Println(returnsErr()) // prints "important error"
+}

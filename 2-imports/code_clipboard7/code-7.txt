@@ -1,0 +1,6 @@
+// foo_test package tests for foo package
+package foo_test
+import (
+ "bar/testutil" // also imports "foo"
+ . "foo"
+)

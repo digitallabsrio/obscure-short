@@ -1,0 +1,26 @@
+package main
+import (
+    "fmt"
+    "time"
+)
+type ISayHi interface {
+    Say()
+}
+type SayHi struct{}
+func (s *SayHi) Say() {
+    // this function isn't accessing s
+    // even if s is nil this will work
+    fmt.Println("Hi!")
+}
+func main() {
+    fmt.Println(MyBetterFunc())
+    fmt.Println(MyBetterFunc() == nil)
+}
+func MyBetterFunc() ISayHi {
+    if time.Now().Weekday() != time.Sunday {
+        // if it’s not Sunday
+        // MyBetterFunc() == nil would be true
+        return nil
+    }
+    return &SayHi{}
+}

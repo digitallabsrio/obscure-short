@@ -1,0 +1,23 @@
+package main
+import "fmt"
+func main() {
+    // add sequential elements
+    // to make it seem like maybe maps are iterated in order
+    m := map[int]int{0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5}
+    for i := 0; i < 5; i++ {
+        for i := range m {
+            fmt.Print(i, " ")
+        }
+        fmt.Println()
+    }
+    // add more elements to make the hash table of the map grow and reorder elements
+    m[6] = 6
+    m[7] = 7
+    m[8] = 8
+    for i := 0; i < 5; i++ {
+        for i := range m {
+            fmt.Print(i, " ")
+        }
+        fmt.Println()
+    }
+}

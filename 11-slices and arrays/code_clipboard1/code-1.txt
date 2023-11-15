@@ -1,0 +1,10 @@
+package main
+import "unsafe"
+
+func main() {
+    type slice struct {
+        array unsafe.Pointer
+        len int
+        cap int
+    }
+}

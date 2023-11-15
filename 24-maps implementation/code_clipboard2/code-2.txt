@@ -1,0 +1,9 @@
+package main
+import (
+    "fmt"
+)
+func main() {
+    m := make(map[int]bool, 5) // initial capacity of 5
+    fmt.Println(len(m)) // len is fine
+    fmt.Println(cap(m)) // invalid argument m (type map[int]bool) for cap
+}

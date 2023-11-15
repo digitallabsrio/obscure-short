@@ -1,0 +1,4 @@
+package main
+// all good!
+func main() {
+}

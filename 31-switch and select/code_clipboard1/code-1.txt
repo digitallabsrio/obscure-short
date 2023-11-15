@@ -1,0 +1,18 @@
+package main
+import (
+    "fmt"
+    "strings"
+)
+func main() {
+    s := "The quick brown Waldo fox jumps over the lazy dog"
+    findWaldoLoop:
+    for _, w := range strings.Split(s, " ") {
+        switch w {
+            case "Waldo":
+            fmt.Println("found Waldo!")
+            break findWaldoLoop
+            default:
+            fmt.Println(w, "is not Waldo")
+        }
+    }
+}

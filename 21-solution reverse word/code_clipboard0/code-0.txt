@@ -1,0 +1,25 @@
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+func YourFunction(input string) string {
+  //Add Your code here
+  words := strings.Split(input, " ")
+	for i, w := range words {
+		reversed := ""
+		for _, c := range w {
+			reversed = string(c) + reversed
+		}
+		words[i] = reversed
+	}
+
+	output := strings.Join(words, " ")
+  return output
+}
+func main() {
+	input := "emoclew ot eht evitacude mroftalp"
+
+	fmt.Println(YourFunction(input))
+}

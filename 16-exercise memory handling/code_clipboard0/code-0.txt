@@ -1,0 +1,40 @@
+package main
+
+import (
+	"runtime"
+	"testing"
+)
+
+const megabyte = 1024 * 1024
+
+func TestAllocations(t *testing.T) {
+	count := 10
+
+	arr := make([][]int, count)
+
+	for i := 0; i < count; i++ {
+		newarr := make([]int, megabyte)
+		for k := 0; k < megabyte; k++ {
+			newarr = append(newarr, k)
+		}
+		arr[i] = newarr[0:2]
+	}
+
+	// for test purposes, run garbage collector to clean up unused memory
+	runtime.GC()
+
+	// check how much memory this program is still using
+	var m runtime.MemStats
+	runtime.ReadMemStats(&m)
+
+	if m.Alloc/megabyte >= 1 {
+		t.Error("there is too much memory allocated")
+	}
+
+	// check if the array has expected data
+	for i, a := range arr {
+		if len(a) != 2 || a[0] != 0 || a[1] != 1 {
+			t.Errorf("Array item #%v does not have valid data", i)
+		}
+	}
+}

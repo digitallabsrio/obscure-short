@@ -1,0 +1,11 @@
+package main
+type myStruct struct {
+    Field int
+}
+func main() {
+    var s myStruct
+    // error: non-name s.Field on the left side of :=
+    s.Field := 1
+    var newVar int
+    s.Field, newVar = 1, 2 // this is actually ok
+}

@@ -1,0 +1,11 @@
+// Fatal is equivalent to Print() followed by a call to os.Exit(1).
+func Fatal(v ...interface{}) {
+    std.Output(2, fmt.Sprint(v...))
+    os.Exit(1)
+}
+// Panic is equivalent to Print() followed by a call to panic().
+func Panic(v ...interface{}) {
+    s := fmt.Sprint(v...)
+    std.Output(2, s)
+    panic(s)
+}

@@ -1,0 +1,17 @@
+package main
+import (
+    "fmt"
+    "unsafe"
+)
+func main() {
+    buf := []byte("darkercorners")
+    buf[0] = 'D'
+    // make a string that points to the same data as buf byte slice
+    str := *(*string)(unsafe.Pointer(&buf))
+    // modifying byte slice
+    // it now points to the same memory as the string does
+    // str is modified here as well
+    buf[6] = 'C'
+    // DarkerCorners DarkerCorners
+    fmt.Println(str, string(buf))
+}

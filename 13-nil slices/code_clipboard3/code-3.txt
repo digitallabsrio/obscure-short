@@ -1,0 +1,11 @@
+package main
+import (
+    "fmt"
+)
+func main() {
+    s := make([]int, 3)
+    s = append(s, 1)
+    s = append(s, 2)
+    s = append(s, 3)
+    fmt.Println(s)
+}

@@ -1,0 +1,12 @@
+package main
+import "fmt"
+type item struct {
+    value string
+}
+func main() {
+    m := map[int]item{1: {"one"}}
+    fmt.Println(m[1].value) // reading a struct value is fine
+    addr := &m[1] // error: cannot take the address of m[1]
+    // error: cannot assign to struct field m[1].value in map
+    m[1].value = "two"
+}

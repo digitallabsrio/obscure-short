@@ -1,0 +1,13 @@
+package main
+import (
+    "fmt"
+)
+func main() {
+    str := "darkercorners"
+    bytes := []byte(str)
+    bytes[0] = 'D'
+    str2 := string(bytes)
+    bytes[6] = 'C'
+    // prints: darkercorners Darkercorners DarkerCorners
+    fmt.Println(str, str2, string(bytes))
+}

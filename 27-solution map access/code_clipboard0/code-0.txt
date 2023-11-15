@@ -1,0 +1,65 @@
+package main
+
+import (
+	"fmt"
+	"math"
+	"sort"
+	"sync"
+	"time"
+)
+
+var (
+	mu sync.Mutex
+)
+
+func isPrime(num int) bool {
+	for i := 2; i <= int(math.Sqrt(float64(num))); i++ {
+		if int(num)%i == 0 {
+			return false
+		}
+	}
+	return true
+}
+
+func findPrimes(resultMap map[int]struct{}, startFrom, tryCount int) {
+	for i := startFrom; i < startFrom+tryCount; i++ {
+		if isPrime(i) {
+			mu.Lock()
+			resultMap[i] = struct{}{}
+			mu.Unlock()
+		}
+	}
+}
+
+// print 10 smallest prime numbers found
+func printSmallest(resultMap map[int]struct{}) {
+	i := 0
+	arr := make([]int, 0, len(resultMap))
+	for p := range resultMap {
+		arr = append(arr, p)
+	}
+
+	sort.Ints(arr)
+
+	for _, p := range arr {
+		fmt.Println(p)
+		i++
+		if i >= 10 {
+			break
+		}
+	}
+}
+
+func main() {
+	resultMap := make(map[int]struct{})
+
+	for i := 0; i < 100; i++ {
+		go findPrimes(resultMap, 99999*i+2, 1000)
+	}
+
+	time.Sleep(time.Second * 3)
+
+	fmt.Printf("Found %v primes\n", len(resultMap))
+
+	printSmallest(resultMap)
+}

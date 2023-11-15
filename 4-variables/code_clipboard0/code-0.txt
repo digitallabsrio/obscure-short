@@ -1,0 +1,8 @@
+package main
+var unusedGlobal int // this is ok
+func f1(unusedArg int) {// unused function arguments are also ok
+     // error: a declared but not used
+     a, b := 1,2
+     // b is used here, but a is only assigned to, doesn't count as “used”
+     a = b
+} 

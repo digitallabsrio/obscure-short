@@ -1,0 +1,22 @@
+package main
+import (
+    "fmt"
+)
+type ISayHi interface {
+    Say()
+}
+type SayHi struct{}
+func (s *SayHi) Say() {
+    // this function isn't accessing s
+    // even if s is nil this will work
+    fmt.Println("Hi!")
+}
+func main() {
+    var sayer ISayHi
+    var sayerImplementation *SayHi
+    sayer = sayerImplementation
+    // the value of SayHi on sayer interface is nil
+    // in Go it's OK to call methods on a nil struct
+    // this line will work fine, because Say function isn't accessing s
+    sayer.Say()
+}

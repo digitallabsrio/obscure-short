@@ -1,0 +1,18 @@
+package main
+import "fmt"
+func f1(s []int) {
+    s = s[2:4]
+    s2 := make([]int, len(s))
+    copy(s2, s)
+    // or if you prefer less efficient, but more concise version:
+    // s2 := append([]int{}, s[2:4]...)
+    for i := range s2 {
+        s2[i] += 10
+    }
+    fmt.Println("f1", s2, len(s2), cap(s2))
+}
+func main() {
+    s := []int{1, 2, 3, 4, 5}
+    f1(s)
+    fmt.Println("main", s, len(s), cap(s))
+}

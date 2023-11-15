@@ -1,0 +1,8 @@
+package main
+import "fmt"
+func main() {
+    slice := []string{"one"}
+    saddr := &slice[0]
+    *saddr = "two"
+    fmt.Println(slice) // [two]
+}

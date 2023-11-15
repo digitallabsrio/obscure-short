@@ -1,0 +1,8 @@
+package main
+import (
+ "fmt"
+ . "math"
+)
+func main() {
+ fmt.Println(Sin(3)) // references math.Sin
+}

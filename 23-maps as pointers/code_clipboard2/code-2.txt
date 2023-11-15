@@ -1,0 +1,7 @@
+package main
+import "fmt"
+func main() {
+    m := make(map[int]int)
+    m[10] = 11 // now all is well
+    fmt.Println(m[10]) // prints 11
+}

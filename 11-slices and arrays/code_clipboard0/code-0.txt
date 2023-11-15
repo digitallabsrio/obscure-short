@@ -1,0 +1,10 @@
+package main
+import "fmt"
+func main() {
+    slice := []int{1, 2, 3}
+    array := [3]int{1, 2, 3}
+    // let the compiler work out array length
+    // this will be an equivalent of [3]int
+    array2 := [...]int{1, 2, 3}
+    fmt.Println(slice, array, array2)
+}

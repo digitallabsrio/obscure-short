@@ -1,0 +1,10 @@
+package main
+import (
+    "fmt"
+)
+func main() {
+    m := make(map[int]struct{})
+    m[123] = struct{}{}
+    _, keyexists := m[123]
+    fmt.Println(keyexists)
+}

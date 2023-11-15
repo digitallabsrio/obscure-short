@@ -1,0 +1,27 @@
+package main
+import (
+    "fmt"
+)
+type ISayHi interface {
+    Say()
+}
+type SayHi struct{}
+func (s *SayHi) Say() {
+    fmt.Println("Hi!")
+}
+func main() {
+    // at this point variable “sayer” only has the static type of ISayHi
+    // dynamic type and value are nil
+    var sayer ISayHi
+    // as expected sayer equals to nil
+    fmt.Println(sayer == nil) // true
+    // a nil variable of a concrete type
+    var sayerImplementation *SayHi
+    // dynamic type of the interface variable is now SayHi
+    // the actual value interface points to is still nil
+    sayer = sayerImplementation
+    // sayer no longer equals to nil, because its dynamic type is set
+    // even though the value it points to is nil
+    // which isn't what most people would expect here
+    fmt.Println(sayer == nil) // false
+}

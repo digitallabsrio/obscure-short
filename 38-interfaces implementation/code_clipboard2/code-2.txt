@@ -1,0 +1,27 @@
+package main
+import "fmt"
+
+// an interface
+type ISayHi interface {
+    Say()
+}
+// this struct implements ISayHi even if it doesn't know it
+type SayHi struct{}
+func (s *SayHi) Say() {
+    fmt.Println("Hi!")
+}
+
+func main() {
+    var sayer ISayHi
+    sayer = &SayHi{}
+    // t will be a zero value (nil in this case) of type *SayHi2
+    // ok will be false
+    t, ok := sayer.(*SayHi2)
+    if ok {
+        t.Say()
+    }
+    // panic: interface conversion:
+    // main.ISayHi is *main.SayHi, not *main.SayHi2
+    t2 := sayer.(*SayHi2)
+    t2.Say()
+}

@@ -1,0 +1,22 @@
+package main
+import "fmt"
+
+type ISayHi interface {
+    Say()
+    IsNil() bool
+}
+type SayHi struct{}
+func (s *SayHi) Say() {
+    fmt.Println("Hi!")
+}
+func main(){
+    var sayer ISayHi
+    var sayerImplementation *SayHi
+    sayer = sayerImplementation
+    fmt.Println(sayer==nil)
+    fmt.Println(sayerImplementation.IsNil())
+}
+func (s *SayHi) IsNil() bool {
+    fmt.Println(s==nil)
+    return s == nil
+}

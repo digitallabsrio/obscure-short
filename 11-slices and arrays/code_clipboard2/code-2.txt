@@ -1,0 +1,18 @@
+package main
+import "fmt"
+func f1(s []int) {
+    // slicing the slice creates a new slice but does not copy the array data
+    s = s[2:4]
+    // modifying the sub-slice changes the array of slice in main function as well
+    for i := range s {
+        s[i] += 10
+    }
+    fmt.Println("f1", s, len(s), cap(s))
+}
+func main() {
+    s := []int{1, 2, 3, 4, 5}
+    // passing a slice as an argument makes a copy of the slice properties (pointer, len and cap)
+    // but the copy shares the same array
+    f1(s)
+    fmt.Println("main", s, len(s), cap(s))
+}

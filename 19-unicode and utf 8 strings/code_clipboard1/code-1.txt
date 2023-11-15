@@ -1,0 +1,10 @@
+package main
+import (
+    "fmt"
+    "unicode/utf8"
+)
+func main() {
+    s := "\xe2\x28\xa1"
+    fmt.Println(utf8.ValidString(s)) // false
+    fmt.Println(s) // �(�
+}

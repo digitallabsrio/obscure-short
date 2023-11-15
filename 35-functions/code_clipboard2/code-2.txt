@@ -1,0 +1,14 @@
+package main
+import (
+  "fmt"
+  "time"
+)
+func timeNow() (t string) {
+  defer func() {
+    t = "Current time is: " + t
+    }()
+  return time.Now().Format(time.Stamp)
+}
+func main() {
+  fmt.Println(timeNow())
+}

@@ -1,0 +1,7 @@
+package main
+
+import "math" // imported and not used: "math"
+
+func main() {
+    fmt.Println("Hello") // undefined: fmt
+}

@@ -1,0 +1,16 @@
+package main
+import (
+    "fmt"
+)
+func main() {
+    loop:
+    switch {
+        case true:
+        for {
+            fmt.Println("switch")
+            break loop // breaks the “labeled statement”
+        }
+    }
+    fmt.Println("not the end")
+    goto loop // jumps to “loop” label
+}

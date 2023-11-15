@@ -1,0 +1,12 @@
+package main
+import "fmt"
+type compareStruct1 struct {
+    A int
+    B string
+    C [3]int
+}
+func main() {
+    s1 := compareStruct1{}
+    s2 := compareStruct1{}
+    fmt.Println(s1 == s2) // works fine, prints true
+}

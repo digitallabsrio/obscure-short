@@ -1,0 +1,24 @@
+package main
+
+import "fmt"
+
+const (
+	width  = 34
+	height = 11
+	gopher = "         ,_---~~~~~----._           _,,_,*^____      _____``*g*\\'*,  / __/ /'     ^.  /      \\ ^@q   f[  @f | @))    |  | @))   l  0 _/  \\`/   \\~____ / __ \\_____/    \\     |           _l__l_           I    }          [______]           I   ]            | | |            |   ]             ~ ~             |   |                            |     |                           |  "
+)
+
+func getCharacterAt(array2d string, x, y, width int) string {
+    // write your code here
+	return string(array2d[0])
+}
+
+func main() {
+	for y := 0; y < height; y++ {
+		for x := 0; x < width; x++ {
+			fmt.Print(
+				getCharacterAt(gopher, x, y, width))
+		}
+		fmt.Println()
+	}
+}

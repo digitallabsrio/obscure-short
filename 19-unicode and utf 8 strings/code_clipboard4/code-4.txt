@@ -1,0 +1,25 @@
+package main
+import (
+    "fmt"
+)
+func main() {
+    s := "touché"
+    // prints every byte
+    // touchÃ©
+    for i := 0; i < len(s); i++ {
+        fmt.Print(string(s[i]))
+    }
+    fmt.Println()
+    // prints every rune
+    // touché
+    for _, r := range s {
+        fmt.Print(string(r))
+    }
+    fmt.Println()
+    // convert a string to rune slice to access by index
+    // touché
+    r := []rune(s)
+    for i := 0; i < len(r); i++ {
+        fmt.Print(string(r[i]))
+    }
+}

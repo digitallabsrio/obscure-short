@@ -1,0 +1,11 @@
+package main
+import "fmt"
+func main() {
+    var s []int // this is a nil slice
+    s2 := []int{} // this is an empty slice
+    // looks like the same thing here:
+    fmt.Println(s, len(s), cap(s)) // [] 0 0
+    fmt.Println(s2, len(s2), cap(s2)) // [] 0 0
+    // but s2 is actually allocated somewhere
+    fmt.Printf("%p %p", s, s2) // 0x0 0x65ca90(any address)
+}

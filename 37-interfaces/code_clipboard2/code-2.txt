@@ -1,0 +1,27 @@
+package main
+import (
+    "fmt"
+    "time"
+)
+type ISayHi interface {
+    Say()
+}
+type SayHi struct{}
+func (s *SayHi) Say() {
+    // this function isn't accessing s
+    // even if s is nil this will work
+    fmt.Println("Hi!")
+}
+func main(){
+    fmt.Println(MyFunc())
+    fmt.Println(MyFunc() == nil)
+}
+func MyFunc() ISayHi {
+    var result *SayHi
+    if time.Now().Weekday() == time.Sunday {
+        result = &SayHi{}
+    }
+    // if it’s not Sunday, this returns an interface that's not equal to nil, but has a nil value for its concrete type
+    // (MyFunc() == nil would be false)
+    return result
+}

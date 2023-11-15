@@ -1,0 +1,29 @@
+package main
+
+import (
+	"reflect"
+	"testing"
+)
+
+type compareStruct struct {
+	A int
+	B string
+	C []int
+}
+
+func structsEqual(s1, s2 compareStruct) bool {
+    return reflect.DeepEqual(s1, s2)
+}
+
+func TestComparingStructs(t *testing.T) {
+	s1 := compareStruct{1, "1", []int{1}}
+	s1_1 := compareStruct{1, "1", []int{1}}
+	s2 := compareStruct{2, "2", []int{2}}
+
+	if structsEqual(s1, s2) {
+		t.Error("s1 should not equal s2")
+	}
+	if !structsEqual(s1, s1_1) {
+		t.Error("s1 should equal s1_1")
+	}
+}

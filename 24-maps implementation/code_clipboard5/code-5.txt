@@ -1,0 +1,12 @@
+package main
+import "fmt"
+type item struct {
+    value string
+}
+func main() {
+    m := map[int]*item{1: {"one"}}
+    // Go doesn't need to take address of m[1] here as it's a pointer already
+    m[1].value = "two"
+    fmt.Println(m[1].value) // two
+    addr := &m[1] // still same error: cannot take the address of m[1]
+}

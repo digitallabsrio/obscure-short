@@ -1,0 +1,10 @@
+package main
+import (
+  "fmt"
+)
+func main() {
+  s := "defer"
+  defer fmt.Println(s)
+  s = "original"
+  fmt.Println(s)
+}

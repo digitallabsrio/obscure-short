@@ -1,0 +1,12 @@
+package main
+import (
+    "fmt"
+    "unicode/utf8"
+)
+func main() {
+    s := "한국어" // 3 Korean characters, encoded in 9 bytes
+    byteLen := len(s)
+    runeLen := utf8.RuneCountInString(s)
+    runeLen2 := len([]rune(s)) // same thing as doing RuneCountInString
+    fmt.Println(byteLen, runeLen, runeLen2) // prints 9 3 3
+}

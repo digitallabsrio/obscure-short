@@ -1,0 +1,61 @@
+package main
+
+import (
+	"errors"
+	"fmt"
+	"math"
+	"strconv"
+	"testing"
+)
+
+func isPrime(num int) (isPrime *bool, err error) {
+	if num <= 2 {
+		return nil, errors.New("the number should be more than 2")
+	}
+	isp := false
+	for i := 2; i <= int(math.Sqrt(float64(num))); i++ {
+		if int(num)%i == 0 {
+			return &isp, nil
+		}
+	}
+	isp = true
+	return &isp, nil
+}
+
+func parseTextAndGetIsPrime(numstr string) (isprime *bool) {
+	num, err := strconv.ParseInt(numstr, 10, 64)
+	if err == nil {
+		isprime, err := isPrime(int(num))
+		if err != nil {
+			fmt.Println("isPrime returned error result", isprime, err)
+			return nil
+		}
+	} else {
+		fmt.Println("numstr does not parse", err)
+	}
+	return isprime
+}
+
+func TestCheckingPrimes(t *testing.T) {
+	tests := []struct {
+		x         string
+		want      bool
+		shouldErr bool
+	}{
+		{x: "", want: false, shouldErr: true},
+		{x: "2", want: false, shouldErr: true},
+		{x: "3", want: true, shouldErr: false},
+		{x: "4", want: false, shouldErr: false},
+	}
+
+	for _, tt := range tests {
+		got := parseTextAndGetIsPrime(tt.x)
+		if got == nil && !tt.shouldErr {
+			t.Errorf("parseTextAndGetIsPrime(%v) errored", tt.x)
+			continue
+		}
+		if got != nil && *got != tt.want {
+			t.Errorf("parseTextAndGetIsPrime(%v) = %v, want %v", tt.x, *got, tt.want)
+		}
+	}
+}

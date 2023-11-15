@@ -1,0 +1,9 @@
+package main
+import "fmt"
+func main() {
+    m := map[int]bool{1: false, 2: true, 3: true}
+    // prints false, but not clear if the value of the element is false or map item doesn’t exist and the default was returned
+    fmt.Println(m[1])
+    val, exists := m[1]
+    fmt.Println(val, exists) // prints false true
+}

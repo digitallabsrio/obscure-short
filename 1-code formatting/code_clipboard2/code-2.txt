@@ -1,0 +1,19 @@
+package main
+func main(){
+  // all of these are OK
+  a := []int{1, 2}
+  b := []int{1, 2,}
+  c := []int{
+    1,
+    2}
+  d := []int{
+    1,
+    2,
+  }
+  // syntax error without trailing comma
+  e := []int{
+    1,
+  // syntax error: unexpected newline, expecting comma or }
+    2
+  }
+}

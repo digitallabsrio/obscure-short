@@ -1,0 +1,10 @@
+package main
+import (
+    "fmt"
+)
+func main() {
+    // a string literal with Unicode characters
+    s := "English 한국어"
+    // prints the expected Unicode string: English 한국어
+    fmt.Println(s)
+}

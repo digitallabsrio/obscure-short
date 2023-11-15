@@ -1,0 +1,16 @@
+package main
+import (
+    "fmt"
+    "time"
+)
+func main() {
+    loop:
+    for {
+        select {
+            case <-time.After(time.Second):
+            fmt.Println("timeout reached")
+            break loop
+        }
+    }
+    fmt.Println("the end")
+}

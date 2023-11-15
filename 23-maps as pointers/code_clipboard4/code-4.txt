@@ -1,0 +1,12 @@
+package main
+import "fmt"
+func f1(m map[int]int) {
+    m = make(map[int]int)
+    m[5] = 123
+}
+func main() {
+    var m map[int]int
+    f1(m)
+    fmt.Println(m[5]) // prints 0
+    fmt.Println(m == nil) // true
+}

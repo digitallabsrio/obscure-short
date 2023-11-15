@@ -1,0 +1,26 @@
+package main
+import (
+    "fmt"
+    "reflect"
+)
+type ISayHi interface {
+    Say()
+}
+type SayHi struct{}
+func (s *SayHi) Say() {
+    // this function isn't accessing s
+    // even if s is nil this will work
+    fmt.Println("Hi!")
+}
+func main() {
+    var sayer ISayHi
+    fmt.Println(IsInterfaceNil(sayer))
+}
+func IsInterfaceNil(i interface{}) bool {
+    if i == nil {
+        return false
+    }
+    rvalue := reflect.ValueOf(i)
+    return rvalue.Kind() == reflect.Ptr &&
+    rvalue.IsNil()
+}

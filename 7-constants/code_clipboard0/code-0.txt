@@ -1,0 +1,11 @@
+package main
+import "fmt"
+
+func main() {
+  const (
+    myconst = "c"
+    myconst2 = "c2"
+    two = iota // 2
+    )
+    fmt.Println(two)
+}

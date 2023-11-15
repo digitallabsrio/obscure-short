@@ -1,0 +1,13 @@
+package main
+import (
+  "fmt"
+  "time"
+)
+func goroutine1() {
+  panic("something went wrong")
+}
+func main() {
+  go goroutine1()
+  time.Sleep(time.Second)
+  fmt.Println("will never get here")
+}

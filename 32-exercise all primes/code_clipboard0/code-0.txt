@@ -1,0 +1,49 @@
+package main
+
+import (
+	"fmt"
+	"math"
+	"sync"
+	"time"
+)
+
+var (
+	mu sync.Mutex
+)
+
+func isPrime(num int) bool {
+	for i := 2; i <= int(math.Sqrt(float64(num))); i++ {
+		if int(num)%i == 0 {
+			return false
+		}
+	}
+	return true
+}
+
+func findPrimes(resultMap map[int]struct{}, startFrom, tryCount int) {
+	for i := startFrom; i < startFrom+tryCount; i++ {
+		if isPrime(i) {
+			mu.Lock()
+			resultMap[i] = struct{}{}
+			mu.Unlock()
+		}
+	}
+}
+
+func main() {
+	resultMap := make(map[int]struct{})
+
+	for i := 0; i < 100; i++ {
+		go func() {
+			findPrimes(resultMap, 99999*i+2, 1000)
+		}()
+	}
+
+	time.Sleep(time.Second * 3)
+
+	fmt.Printf("Found %v primes\n", len(resultMap))
+
+	if len(resultMap) < 6746 {
+		panic("did not find all the prime numbers")
+	}
+}

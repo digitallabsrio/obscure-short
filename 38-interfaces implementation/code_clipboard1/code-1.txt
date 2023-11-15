@@ -1,0 +1,18 @@
+package main
+import (
+    "fmt"
+)
+// an interface
+type ISayHi interface {
+    Say()
+}
+// this struct implements ISayHi even if it doesn't know it
+type SayHi struct{}
+func (s *SayHi) Say() {
+    fmt.Println("Hi!")
+}
+func main() {
+    // verify at compile time that *SayHi implements ISayHi
+    var _ ISayHi = (*SayHi)(nil)
+    fmt.Println("Code compiled successfully")
+}

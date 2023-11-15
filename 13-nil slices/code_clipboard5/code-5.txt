@@ -1,0 +1,11 @@
+package main
+import "fmt"
+func main() {
+    x := 2
+    y := 3
+    s := make([][]int, y)
+    for i := range s {
+        s[i] = make([]int, x)
+    }
+    fmt.Println(s)
+}

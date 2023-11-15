@@ -1,0 +1,2 @@
+func mapaccess1(t *maptype, h *hmap, key
+unsafe.Pointer) unsafe.Pointer

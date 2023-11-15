@@ -1,0 +1,5 @@
+package main
+func main() {
+    str := "darkercorners"
+    str[0] = 'D' // error: cannot assign to str[0]
+}
